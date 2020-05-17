@@ -1,0 +1,112 @@
+
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is a Hashmap application"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_detects_Wrong_Args
+    COMMAND ${APPLICATION} delete 1
+)
+
+set_tests_properties (${prefix}_detects_Wrong_Args PROPERTIES
+    PASS_REGULAR_EXPRESSION "Bad arguments!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Insert_And_Get
+    COMMAND ${APPLICATION} insert 1 2 get 1
+)
+
+set_tests_properties (${prefix}_can_Insert_And_Get PROPERTIES
+    PASS_REGULAR_EXPRESSION "(value = 2 with key = 1)"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_сant_Insert_Wrong_Argument
+    COMMAND ${APPLICATION} insert 4 arg
+)
+
+set_tests_properties (${prefix}_сant_Insert_Wrong_Argument PROPERTIES
+    PASS_REGULAR_EXPRESSION "Invalid value: arg"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_сant_Insert_Wrong_Key
+    COMMAND ${APPLICATION} insert key 5
+)
+
+set_tests_properties (${prefix}_сant_Insert_Wrong_Key PROPERTIES
+    PASS_REGULAR_EXPRESSION "Invalid value: key"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Remove_Element
+    COMMAND ${APPLICATION} insert 1 2 remove 1 get 1
+)
+
+set_tests_properties (${prefix}_can_Remove_Element PROPERTIES
+    PASS_REGULAR_EXPRESSION "(No value with this key)"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_cant_Remove_Not_Existing_Elem
+    COMMAND ${APPLICATION} remove 1
+)
+
+set_tests_properties (${prefix}_cant_Remove_Not_Existing_Elem PROPERTIES
+    PASS_REGULAR_EXPRESSION "(No value with this key)"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_cant_Insert_Out_Of_Range_Elem
+    COMMAND ${APPLICATION} insert 1 12000000000000
+)
+
+set_tests_properties (${prefix}_cant_Insert_Out_Of_Range_Elem PROPERTIES
+    PASS_REGULAR_EXPRESSION "(Out of range)"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_cant_Insert_Out_Of_Range_Negative_Elem
+    COMMAND ${APPLICATION} insert 1 -12000000000000
+)
+
+set_tests_properties (${prefix}_cant_Insert_Out_Of_Range_Negative_Elem PROPERTIES
+    PASS_REGULAR_EXPRESSION "(Out of range)"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_cant_Insert_Trash
+    COMMAND ${APPLICATION} insert dasad1asda afw2edw
+)
+
+set_tests_properties (${prefix}_cant_Insert_Trash PROPERTIES
+    PASS_REGULAR_EXPRESSION "Invalid value: afw2edw"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_cant_Remove_Trash
+    COMMAND ${APPLICATION} insert 2 5 remove daw1fa124asw
+)
+
+set_tests_properties (${prefix}_cant_Remove_Trash PROPERTIES
+    PASS_REGULAR_EXPRESSION "(Invalid value: daw1fa124asw)"
+    LABELS "${MODULE}")

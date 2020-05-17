@@ -1,0 +1,61 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is a modify stack application"
+    LABELS "${MODULE}")
+
+
+add_test(
+    NAME ${prefix}_can_Check_Number_Of_Arguments
+    COMMAND ${APPLICATION} 1 2
+)
+set_tests_properties (${prefix}_can_Check_Number_Of_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Should be 1 argument."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Number_Format
+    COMMAND ${APPLICATION} 1y,3
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Number_Format PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Wrong format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Number_Format
+    COMMAND ${APPLICATION} "12:3,34,1.6"
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Operation_Format PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Wrong format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Calculate_Int_Example
+    COMMAND ${APPLICATION} 3,7,5,3,4
+)
+set_tests_properties (${prefix}_can_Calculate_Int_Example PROPERTIES
+    PASS_REGULAR_EXPRESSION "MIN: 3 3 3 3 3  Stack: 4 3 5 7 3"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Calculate_Double_Example
+    COMMAND ${APPLICATION} 3.7,5.3,4.4
+)
+set_tests_properties (${prefix}_can_Calculate_Double_Example PROPERTIES
+    PASS_REGULAR_EXPRESSION "MIN: 3.7 3.7 3.7  Stack: 4.4 5.3 3.7"
+    LABELS "${MODULE}")

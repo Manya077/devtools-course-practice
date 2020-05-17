@@ -1,0 +1,115 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+#############################################
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+#############################################
+
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is a deposit calc application"
+    LABELS "${MODULE}")
+
+#############################################
+
+add_test(
+    NAME ${prefix}_can_Check_Number_Of_Arguments
+    COMMAND ${APPLICATION} 1 2
+)
+set_tests_properties (${prefix}_can_Check_Number_Of_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Should be 3 arguments."
+    LABELS "${MODULE}")
+
+#############################################
+
+add_test(
+    NAME ${prefix}_can_Check_Period_Is_Negative
+    COMMAND ${APPLICATION} 0 -1 0
+)
+set_tests_properties (${prefix}_can_Check_Period_Is_Negative PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Period cant be negative"
+    LABELS "${MODULE}")
+
+#############################################
+
+add_test(
+    NAME ${prefix}_can_Check_Period_Equal_Zero
+    COMMAND ${APPLICATION} 0 0 0
+)
+set_tests_properties (${prefix}_can_Check_Period_Equal_Zero PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Period cant be equal zero"
+    LABELS "${MODULE}")
+
+#############################################
+
+add_test(
+    NAME ${prefix}_can_Check_Period_Smaller_Then_1827
+    COMMAND ${APPLICATION} 0 2000 0
+)
+set_tests_properties (${prefix}_can_Check_Period_Smaller_Then_1827 PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Period cant be bigger then 1826"
+    LABELS "${MODULE}")
+
+#############################################
+
+add_test(
+    NAME ${prefix}_can_Calculate_Deposit
+    COMMAND ${APPLICATION} 100000 366 10
+)
+set_tests_properties (${prefix}_can_Calculate_Deposit PROPERTIES
+    PASS_REGULAR_EXPRESSION "Deposit with rate = 110000, interest charges = 10000"
+    LABELS "${MODULE}")
+
+#############################################
+
+add_test(
+    NAME ${prefix}_can_Calculate_Deposit_With_Small_Period
+    COMMAND ${APPLICATION} 100000 1 10
+)
+set_tests_properties (${prefix}_can_Calculate_Deposit_With_Small_Period PROPERTIES
+    PASS_REGULAR_EXPRESSION "Deposit with rate = 100027, interest charges = 27"
+    LABELS "${MODULE}")
+
+#############################################
+
+add_test(
+    NAME ${prefix}_can_Calculate_Deposit_With_Big_Period
+    COMMAND ${APPLICATION} 100000 1826 10 
+)
+set_tests_properties (${prefix}_can_Calculate_Deposit_With_Big_Period PROPERTIES
+    PASS_REGULAR_EXPRESSION "Deposit with rate = 149890, interest charges = 49890"
+    LABELS "${MODULE}")
+
+#############################################
+
+add_test(
+    NAME ${prefix}_can_Calculate_Deposit_With_Zero_Rate
+    COMMAND ${APPLICATION} 100000 366 0
+)
+set_tests_properties (${prefix}_can_Calculate_Deposit_With_Zero_Rate PROPERTIES
+    PASS_REGULAR_EXPRESSION "Deposit with rate = 100000, interest charges = 0"
+    LABELS "${MODULE}")
+
+#############################################
+
+add_test(
+    NAME ${prefix}_can_Calculate_Deposit_With_Zero_Deposit
+    COMMAND ${APPLICATION} 0 366 10
+)
+set_tests_properties (${prefix}_can_Calculate_Deposit_With_Zero_Deposit PROPERTIES
+    PASS_REGULAR_EXPRESSION "Deposit with rate = 0, interest charges = 0"
+    LABELS "${MODULE}")

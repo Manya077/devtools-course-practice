@@ -1,0 +1,104 @@
+﻿#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is a Queue application"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_detects_Wrong_Args
+    COMMAND ${APPLICATION} put 1
+)
+
+set_tests_properties (${prefix}_detects_Wrong_Args PROPERTIES
+    PASS_REGULAR_EXPRESSION "Bad arguments!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_add_Elem
+    COMMAND ${APPLICATION} putElement 1 topElement
+)
+
+set_tests_properties (${prefix}_add_Elem PROPERTIES
+    PASS_REGULAR_EXPRESSION "TopElem = 1"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_add_Difficult_Elem
+    COMMAND ${APPLICATION} putElement -3405 topElement
+)
+
+set_tests_properties (${prefix}_add_Difficult_Elem PROPERTIES
+    PASS_REGULAR_EXPRESSION "TopElem = -3405"
+    LABELS "${MODULE}")
+
+
+add_test(
+    NAME ${prefix}_add_Wrong_Elem
+    COMMAND ${APPLICATION} putElement k
+)
+
+set_tests_properties (${prefix}_add_Wrong_Elem PROPERTIES
+    PASS_REGULAR_EXPRESSION "Invalid value: k"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_get_Count
+    COMMAND ${APPLICATION} putElement 1 putElement 2 putElement 3 putElement 4 putElement 5 getCount
+)
+
+set_tests_properties (${prefix}_get_Count PROPERTIES
+    PASS_REGULAR_EXPRESSION "Number of Elements = 5"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_get_Elem
+    COMMAND ${APPLICATION} putElement 1 putElement 2 putElement 3 getElement getCount
+)
+
+set_tests_properties (${prefix}_get_Elem PROPERTIES
+    PASS_REGULAR_EXPRESSION "GetElem = 1, Number of Elements = 2"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_get_Not_Existing_Elem
+    COMMAND ${APPLICATION} getElement
+)
+
+set_tests_properties (${prefix}_get_Not_Existing_Elem PROPERTIES
+    PASS_REGULAR_EXPRESSION "Queue is empty"
+    LABELS "${MODULE}")
+
+
+add_test(
+    NAME ${prefix}_top_Not_Existing_Elem
+    COMMAND ${APPLICATION} topElement
+)
+
+set_tests_properties (${prefix}_top_Not_Existing_Elem PROPERTIES
+    PASS_REGULAR_EXPRESSION "Queue is empty"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_put_Into_Full_Queue
+    COMMAND ${APPLICATION} putElement 1 putElement 2 putElement 3 putElement 4 putElement 5 putElement 6 putElement 7 putElement 8 putElement 9 putElement 10 putElement 11 
+)
+
+set_tests_properties (${prefix}_put_Into_Full_Queue PROPERTIES
+    PASS_REGULAR_EXPRESSION "No space"
+    LABELS "${MODULE}")
