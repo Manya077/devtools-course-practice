@@ -1,0 +1,125 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is a complex number calculator"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Number_Of_Arguments
+    COMMAND ${APPLICATION} 1 2
+)
+set_tests_properties (${prefix}_can_Check_Number_Of_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Should be 5 arguments."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Number_Format
+    COMMAND ${APPLICATION} 1 ip 2 3 +
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Number_Format PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong number format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Operation_Format
+    COMMAND ${APPLICATION} 1 1 2 3 +trash
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Operation_Format PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong operation format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Add_Complexs
+    COMMAND ${APPLICATION} 2.5 4.5 1.0 4.5 +
+)
+set_tests_properties (${prefix}_can_Add_Complexs PROPERTIES
+    PASS_REGULAR_EXPRESSION "Real = 3.5 Imaginary = 9"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Diff_Complexs
+    COMMAND ${APPLICATION} -17 0 15 -3.5 -
+)
+set_tests_properties (${prefix}_can_Diff_Complexs PROPERTIES
+    PASS_REGULAR_EXPRESSION "Real = -32 Imaginary = 3.5"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Mult_Complexs
+    COMMAND ${APPLICATION} 13 -2 4.6 7.3 *
+)
+set_tests_properties (${prefix}_can_Mult_Complexs PROPERTIES
+    PASS_REGULAR_EXPRESSION "Real = 74.4 Imaginary = 85.7"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Divide_Complexs
+    COMMAND ${APPLICATION} 27 30 15 20 /
+)
+set_tests_properties (${prefix}_can_Divide_Complexs PROPERTIES
+    PASS_REGULAR_EXPRESSION "Real = 1.608 Imaginary = -0.144"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Divide_By_Zero
+    COMMAND ${APPLICATION} 27 30 0 0 /
+)
+set_tests_properties (${prefix}_can_Detect_Divide_By_Zero PROPERTIES
+    PASS_REGULAR_EXPRESSION "Can't divide by zero"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Add_Negative_Complexs
+    COMMAND ${APPLICATION} -1 -2 -3 -4 +
+)
+set_tests_properties (${prefix}_can_Add_Negative_Complexs PROPERTIES
+    PASS_REGULAR_EXPRESSION "Real = -4 Imaginary = -6"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_сan_Add_Natural_To_Complex
+    COMMAND ${APPLICATION} 1 2 3 0 +
+)
+set_tests_properties (${prefix}_сan_Add_Natural_To_Complex PROPERTIES
+    PASS_REGULAR_EXPRESSION "Real = 4 Imaginary = 2"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_сan_Substruct_Natural_From_Complex
+    COMMAND ${APPLICATION} 1 2 3 0 -
+)
+set_tests_properties (${prefix}_can_Substruct_Natural_From_Complex PROPERTIES
+    PASS_REGULAR_EXPRESSION "Real = -2 Imaginary = 2"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_сan_Multiply_Natural_By_Complex
+    COMMAND ${APPLICATION} 1 2 3 0 *
+)
+set_tests_properties (${prefix}_can_Multiply_Natural_By_Complex PROPERTIES
+    PASS_REGULAR_EXPRESSION "Real = 3 Imaginary = 6"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_сan_Divide_Complex_by_Natural
+    COMMAND ${APPLICATION} 1 2 3 0 /
+)
+set_tests_properties (${prefix}_can_Divide_Complex_by_Natural PROPERTIES
+    PASS_REGULAR_EXPRESSION "Real = 0.333333 Imaginary = 0.666667"
+    LABELS "${MODULE}")

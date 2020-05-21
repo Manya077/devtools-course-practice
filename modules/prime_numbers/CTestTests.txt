@@ -1,0 +1,77 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Do_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_Do_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Should be 2 arguments"
+    LABELS "${MODULE}")
+
+
+add_test(
+    NAME ${prefix}_check_argc_with_1_args
+    COMMAND ${APPLICATION} 1
+)
+
+set_tests_properties (${prefix}_check_argc_with_1_args PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Should be 2 arguments"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_check_argc_with_3_args
+    COMMAND ${APPLICATION} 1 2 3
+)
+
+set_tests_properties (${prefix}_check_argc_with_3_args PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Should be 2 arguments"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_check_argc_with_2_args
+    COMMAND ${APPLICATION} 1 10
+)
+
+set_tests_properties (${prefix}_check_argc_with_2_args PROPERTIES
+    PASS_REGULAR_EXPRESSION "Interval: 1-10\nPrimary numbers: 2 3 5 7"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_detect_negative_left_border
+    COMMAND ${APPLICATION} -2 10
+)
+
+set_tests_properties (${prefix}_can_detect_negative_left_border PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Left border can't be less than zero"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_detect_that_left_bigger_than_right_border
+    COMMAND ${APPLICATION} 20 10
+)
+
+set_tests_properties (${prefix}_can_detect_that_left_bigger_than_right_border PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Left border must be less than right"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_detect_incorrect_input_data
+    COMMAND ${APPLICATION} asd 10
+)
+
+set_tests_properties (${prefix}_can_detect_incorrect_input_data PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: incorrect input data"
+    LABELS "${MODULE}")
+

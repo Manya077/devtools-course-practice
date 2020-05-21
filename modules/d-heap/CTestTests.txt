@@ -1,0 +1,73 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Insert_And_Get
+    COMMAND ${APPLICATION} add 1 show
+)
+set_tests_properties (${prefix}_can_Insert_And_Get PROPERTIES
+    PASS_REGULAR_EXPRESSION "(1)"
+    LABELS "${MODULE}")
+
+
+	
+add_test(
+    NAME ${prefix}_can_Insert_And_Delete
+    COMMAND ${APPLICATION} add 1 add 3 del 1 show
+)
+set_tests_properties (${prefix}_can_Insert_And_Delete PROPERTIES
+    PASS_REGULAR_EXPRESSION "(3)"
+    LABELS "${MODULE}")
+
+
+
+add_test(
+    NAME ${prefix}_can_Sort_Elem
+    COMMAND ${APPLICATION} add 1 add 45 add 52 add 2 add 12 sort
+)
+set_tests_properties (${prefix}_can_Sort_Elem PROPERTIES
+    PASS_REGULAR_EXPRESSION "(1 2 12 45 52)"
+    LABELS "${MODULE}")
+
+
+
+add_test(
+    NAME ${prefix}_can_Catch_Invalid_Operator_Throw
+    COMMAND ${APPLICATION} fsafasd 100
+)
+set_tests_properties (${prefix}_can_Catch_Invalid_Operator_Throw PROPERTIES
+    PASS_REGULAR_EXPRESSION "(Bad arguments!)"
+    LABELS "${MODULE}")	
+
+
+
+add_test(
+    NAME ${prefix}_can_Catch_Invalid_Number_Throw
+    COMMAND ${APPLICATION} add asdf
+)
+set_tests_properties (${prefix}_can_Catch_Invalid_Number_Throw PROPERTIES
+    PASS_REGULAR_EXPRESSION "(Cannot parse Number!)"
+    LABELS "${MODULE}")	
+	
+	
+	
+add_test(
+    NAME ${prefix}_can_Catch_Negative_Number_Throw
+    COMMAND ${APPLICATION} add -100
+)
+set_tests_properties (${prefix}_can_Catch_Negative_Number_Throw PROPERTIES
+    PASS_REGULAR_EXPRESSION "(Negative Number!)"
+    LABELS "${MODULE}")	
+
+
+
+add_test(
+    NAME ${prefix}_can_Help
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Help PROPERTIES
+    PASS_REGULAR_EXPRESSION "(This is D-Heap sorting application*)"
+    LABELS "${MODULE}")	

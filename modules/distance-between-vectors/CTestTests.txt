@@ -1,0 +1,85 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is a distance between vectors calculator application."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Number_Of_Arguments
+    COMMAND ${APPLICATION} 1.0 2.0 3.0 1.0 2.0 L1
+)
+set_tests_properties (${prefix}_can_Check_Number_Of_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "Should be 7 arguments!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Number_Format
+    COMMAND ${APPLICATION} 1.0 zero 3.0 1.0 2.0 3.0 L1
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Number_Format PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong number format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Operation_Format
+    COMMAND ${APPLICATION} 1.0 2.0 3.0 1.0 2.0 3.0 L5
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Operation_Format PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong operation name!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Take_L1_Metrics
+    COMMAND ${APPLICATION} 1.0 2.0 3.0 2.0 3.0 4.0 L1
+)
+set_tests_properties (${prefix}_can_Take_L1_Metrics PROPERTIES
+    PASS_REGULAR_EXPRESSION "L1 = 3"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Take_L2_Metrics
+    COMMAND ${APPLICATION} 1.0 2.0 3.0 2.0 3.0 4.0 L2
+)
+set_tests_properties (${prefix}_can_Take_L2_Metrics PROPERTIES
+    PASS_REGULAR_EXPRESSION "L2 = 1.73205"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Take_L3_Metrics
+    COMMAND ${APPLICATION} 3.0 1.0 1.0 2.0 3.0 4.0 L3
+)
+set_tests_properties (${prefix}_can_Take_L3_Metrics PROPERTIES
+    PASS_REGULAR_EXPRESSION "L3 = 3.30193"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Take_L4_Metrics
+    COMMAND ${APPLICATION} 3.0 1.0 1.0 2.0 3.0 4.0 L4
+)
+set_tests_properties (${prefix}_can_Take_L4_Metrics PROPERTIES
+    PASS_REGULAR_EXPRESSION "L4 = 3.14635"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Take_LInf_Metrics
+    COMMAND ${APPLICATION} 3.0 1.0 1.0 2.0 3.0 4.0 LInf
+)
+set_tests_properties (${prefix}_can_Take_LInf_Metrics PROPERTIES
+    PASS_REGULAR_EXPRESSION "LInf = 3"
+    LABELS "${MODULE}")

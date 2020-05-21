@@ -1,0 +1,118 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is a 3d vector calculator"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Number_Of_Arguments
+    COMMAND ${APPLICATION} 1 2
+)
+set_tests_properties (${prefix}_can_Check_Number_Of_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "Should be 4 or 7 arguments."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Number_Format4
+    COMMAND ${APPLICATION} q 1 1 +
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Number_Format4 PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong number format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Number_Format7
+    COMMAND ${APPLICATION} q 1 1 1 1 1 +
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Number_Format7 PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong number format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Operation_Format7
+    COMMAND ${APPLICATION} 1 1 1 2 3 1 q
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Operation_Format7 PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong operation format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Operation_Format4
+    COMMAND ${APPLICATION} 1 1 1 q
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Operation_Format4 PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong operation format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Add_Vectors
+    COMMAND ${APPLICATION} 1 2 3 4 5 6 +
+)
+set_tests_properties (${prefix}_can_Add_Vectors PROPERTIES
+    PASS_REGULAR_EXPRESSION "X = 5 Y = 7 Z = 9"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Diff_Vectors
+    COMMAND ${APPLICATION} 1 2 3 4 5 6 -
+)
+set_tests_properties (${prefix}_can_Diff_Vectors PROPERTIES
+    PASS_REGULAR_EXPRESSION "X = -3 Y = -3 Z = -3"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Normalize_Vector
+    COMMAND ${APPLICATION} 1 1 1 n
+)
+set_tests_properties (${prefix}_can_Normalize_Vector PROPERTIES
+    PASS_REGULAR_EXPRESSION "X = 0.57735 Y = 0.57735 Z = 0.57735"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Normalize_Zero_Vector
+    COMMAND ${APPLICATION} 0 0 0 n
+)
+set_tests_properties (${prefix}_Normalize_Zero_Vector PROPERTIES
+    PASS_REGULAR_EXPRESSION "can`t be zero"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Use_Scalar_Product
+    COMMAND ${APPLICATION} 1 2 3 4 5 6 s
+)
+set_tests_properties (${prefix}_can_Use_Scalar_Product PROPERTIES
+    PASS_REGULAR_EXPRESSION "Scalar product = 32"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Use_Vector_Product
+    COMMAND ${APPLICATION} 1 2 3 4 5 6 v
+)
+set_tests_properties (${prefix}_can_Use_Vector_Product PROPERTIES
+    PASS_REGULAR_EXPRESSION "X = -3 Y = 6 Z = -3"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Calculate_Vector_Length
+    COMMAND ${APPLICATION} 4 4 2 l
+)
+set_tests_properties (${prefix}_can_Calculate_Vector_Length PROPERTIES
+    PASS_REGULAR_EXPRESSION "Vector length = 6"
+    LABELS "${MODULE}")
+

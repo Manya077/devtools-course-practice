@@ -1,0 +1,61 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is a game of life application"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Invalid_Arguments_Test
+    COMMAND ${APPLICATION} a b c
+)
+
+set_tests_properties (${prefix}_Invalid_Arguments_Test PROPERTIES
+    PASS_REGULAR_EXPRESSION "Invalid grid size!"
+    LABELS "${MODULE}")
+add_test(
+    NAME ${prefix}_Size_Not_Entered_Test
+    COMMAND ${APPLICATION} 1
+)
+
+set_tests_properties (${prefix}_Size_Not_Entered_Test PROPERTIES
+    PASS_REGULAR_EXPRESSION "Enter width and hight"
+    LABELS "${MODULE}")
+	
+add_test(
+    NAME ${prefix}_Too_Few_Arguments_Test
+    COMMAND ${APPLICATION} 2 2 .
+)
+set_tests_properties (${prefix}_Too_Few_Arguments_Test PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: You need to fill in the grid completely"
+    LABELS "${MODULE}")
+add_test(
+    NAME ${prefix}_Wrong_Grid_Format_Test
+    COMMAND ${APPLICATION} 2 2 r e a d 4
+)
+set_tests_properties (${prefix}_Wrong_Grid_Format_Test PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong grid elements format"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Calculate_Next_Grid
+    COMMAND ${APPLICATION} 3 3 . * . . * . . * . 1
+)
+set_tests_properties (${prefix}_Can_Calculate_Next_Grid PROPERTIES
+    PASS_REGULAR_EXPRESSION "...\n\\*\\*\\*\n...\n"
+    LABELS "${MODULE}")

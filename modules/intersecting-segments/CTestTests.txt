@@ -1,0 +1,100 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+	
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is an intersecting segments application"
+    LABELS "${MODULE}")
+	
+add_test(
+    NAME ${prefix}_can_Check_Number_Of_Arguments
+    COMMAND ${APPLICATION} 1 2
+)
+set_tests_properties (${prefix}_can_Check_Number_Of_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Incurrect number arguments"
+    LABELS "${MODULE}")
+	
+add_test(
+    NAME ${prefix}_can_Check_Number_Operation
+    COMMAND ${APPLICATION} 7 1 1 2 2 3 3 4 4
+)
+set_tests_properties (${prefix}_can_Check_Number_Operation PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Number operation must be 1 or 2 or 3"
+    LABELS "${MODULE}")
+	
+add_test(
+    NAME ${prefix}_can_Calculate_Triangle_Area
+    COMMAND ${APPLICATION} 1 8 15 1 6 5 2
+)
+set_tests_properties (${prefix}_can_Calculate_Triangle_Area PROPERTIES
+    PASS_REGULAR_EXPRESSION "Triangle area = 32"
+    LABELS "${MODULE}")
+	
+add_test(
+    NAME ${prefix}_can_Identify_Point_To_Right_Of_Vector
+    COMMAND ${APPLICATION} 2 1 1 0 0 0 1
+)
+set_tests_properties (${prefix}_can_Identify_Point_To_Right_Of_Vector PROPERTIES
+    PASS_REGULAR_EXPRESSION "Point to the right of the vector."
+    LABELS "${MODULE}")
+	
+add_test(
+    NAME ${prefix}_can_Identify_Point_To_Left_Of_Vector
+    COMMAND ${APPLICATION} 2 -1 1 0 0 0 1
+)
+set_tests_properties (${prefix}_can_Identify_Point_To_Left_Of_Vector PROPERTIES
+    PASS_REGULAR_EXPRESSION "Point to the left of the vector."
+    LABELS "${MODULE}")
+	
+add_test(
+    NAME ${prefix}_can_Identify_Point_On_Vector
+    COMMAND ${APPLICATION} 2 0 8 0 0 0 1
+)
+set_tests_properties (${prefix}_can_Identify_Point_On_Vector PROPERTIES
+    PASS_REGULAR_EXPRESSION "Point on the vector."
+    LABELS "${MODULE}")
+	
+add_test(
+    NAME ${prefix}_can_Detect_Intersecting_Segments
+    COMMAND ${APPLICATION} 3 1 1 1 5 0 3 2 4
+)
+set_tests_properties (${prefix}_can_Detect_Intersecting_Segments PROPERTIES
+    PASS_REGULAR_EXPRESSION "Segments do intersect"
+    LABELS "${MODULE}")
+	
+add_test(
+    NAME ${prefix}_can_Detect_Not_Intersecting_Segments
+    COMMAND ${APPLICATION} 3 1 1 1 5 2 3 2 4
+)
+set_tests_properties (${prefix}_can_Detect_Not_Intersecting_Segments PROPERTIES
+    PASS_REGULAR_EXPRESSION "Segments do not intersect"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Intersecting_Segments_On_The_Line
+    COMMAND ${APPLICATION} 3 1 1 3 3 2 2 4 4
+)
+set_tests_properties (${prefix}_can_Detect_Intersecting_Segments_On_The_Line PROPERTIES
+    PASS_REGULAR_EXPRESSION "Segments do intersect"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Not_Intersecting_Segments_On_The_Line
+    COMMAND ${APPLICATION} 3 1 1 2 2 3 3 4 4
+)
+set_tests_properties (${prefix}_can_Detect_Not_Intersecting_Segments_On_The_Line PROPERTIES
+    PASS_REGULAR_EXPRESSION "Segments do not intersect"
+    LABELS "${MODULE}")

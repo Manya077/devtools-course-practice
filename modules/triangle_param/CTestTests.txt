@@ -1,0 +1,138 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "Follow syntax rules:"
+    LABELS "${MODULE}")
+    
+add_test(
+    NAME ${prefix}_can_Check_Top_Name
+    COMMAND ${APPLICATION} a 0 0 b 1 0 c 0 1 All
+)
+
+set_tests_properties (${prefix}_can_Check_Top_Name PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong top names arguments. Please, follow the syntax.\n"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Possibility_To_Create_Triangle
+    COMMAND ${APPLICATION} A 0 0 B 1 1 C 2 2 All
+)
+
+set_tests_properties (${prefix}_can_Check_Possibility_To_Create_Triangle PROPERTIES
+    PASS_REGULAR_EXPRESSION "Three of your points are in the same line\n."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Number_Type
+    COMMAND ${APPLICATION} A double 0 B 1 0 C 0 1
+)
+
+set_tests_properties (${prefix}_can_Check_Number_Type PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong number type arguments. Please, follow the syntax.\n"
+    LABELS "${MODULE}")
+    
+add_test(
+    NAME ${prefix}_can_Work_With_No_Request
+    COMMAND ${APPLICATION} A 0 0 B 1 0 C 0 1
+)
+
+set_tests_properties (${prefix}_can_Work_With_No_Request PROPERTIES
+    PASS_REGULAR_EXPRESSION "Requested calculations:\n"
+    LABELS "${MODULE}")
+    
+add_test(
+    NAME ${prefix}_can_Check_Wrong_Requests
+    COMMAND ${APPLICATION} A 0 0 B 1 0 C 0 1 asdq
+)
+
+set_tests_properties (${prefix}_can_Check_Wrong_Requests PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong requests arguments. Please, follow the syntax.\n"
+    LABELS "${MODULE}")
+    
+add_test(
+    NAME ${prefix}_can_Get_LengthAB
+    COMMAND ${APPLICATION} A 0 0 B 1 0 C 0 1 LengthAB
+)
+
+set_tests_properties (${prefix}_can_Get_LengthAB PROPERTIES
+    PASS_REGULAR_EXPRESSION "Requested calculations:\n1. LengthAB = 1"
+    LABELS "${MODULE}")
+    
+add_test(
+    NAME ${prefix}_can_Get_LengthBC
+    COMMAND ${APPLICATION} A 0 0 B 1 0 C 0 1 LengthBC
+)
+
+set_tests_properties (${prefix}_can_Get_LengthBC PROPERTIES
+    PASS_REGULAR_EXPRESSION "Requested calculations:\n1. LengthBC = 1.414214"
+    LABELS "${MODULE}")
+    
+add_test(
+    NAME ${prefix}_can_Get_LengthAC
+    COMMAND ${APPLICATION} A 0 0 B 1 0 C 0 1 LengthAC
+)
+
+set_tests_properties (${prefix}_can_Get_LengthAC PROPERTIES
+    PASS_REGULAR_EXPRESSION "Requested calculations:\n1. LengthAC = 1"
+    LABELS "${MODULE}")
+    
+add_test(
+    NAME ${prefix}_can_Get_CornerA
+    COMMAND ${APPLICATION} A 0 0 B 0 1 C 1 0 CornerA
+)
+
+set_tests_properties (${prefix}_can_Get_CornerA PROPERTIES
+    PASS_REGULAR_EXPRESSION "Requested calculations:\n1. CornerA = 1.570796"
+    LABELS "${MODULE}")
+    
+add_test(
+    NAME ${prefix}_can_Get_CornerB
+    COMMAND ${APPLICATION} A 0 0 B 0 1 C 1 0 CornerB
+)
+
+set_tests_properties (${prefix}_can_Get_CornerB PROPERTIES
+    PASS_REGULAR_EXPRESSION "Requested calculations:\n1. CornerB = 0.785398"
+    LABELS "${MODULE}")
+    
+add_test(
+    NAME ${prefix}_can_Get_CornerC
+    COMMAND ${APPLICATION} A 0 0 B 0 1 C 1 0 CornerC
+)
+
+set_tests_properties (${prefix}_can_Get_CornerC PROPERTIES
+    PASS_REGULAR_EXPRESSION "Requested calculations:\n1. CornerC = 0.785398"
+    LABELS "${MODULE}")
+    
+add_test(
+    NAME ${prefix}_can_Get_Perimeter
+    COMMAND ${APPLICATION} A 0 0 B 0 1 C 1 0 Perimeter
+)
+
+set_tests_properties (${prefix}_can_Get_Perimeter PROPERTIES
+    PASS_REGULAR_EXPRESSION "Requested calculations:\n1. Perimeter = 3.414214"
+    LABELS "${MODULE}")
+    
+add_test(
+    NAME ${prefix}_can_Get_Square
+    COMMAND ${APPLICATION} A 0 0 B 0 1 C 1 0 Square
+)
+
+set_tests_properties (${prefix}_can_Get_Square PROPERTIES
+    PASS_REGULAR_EXPRESSION "Requested calculations:\n1. Square = 0.5"
+    LABELS "${MODULE}")

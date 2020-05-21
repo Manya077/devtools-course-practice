@@ -1,0 +1,53 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Do_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_Do_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is a quick sort application"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Sort_Array__5
+    COMMAND ${APPLICATION} 9 4 5 2 7
+)
+set_tests_properties (${prefix}_Can_Sort_Array__5 PROPERTIES
+    PASS_REGULAR_EXPRESSION "2 4 5 7 9"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Sort_Array_20
+    COMMAND ${APPLICATION} 9 4 5 2 7 6 23 1 12 34 43 44 3 32 54 37 25 87 53 123
+)
+set_tests_properties (${prefix}_Can_Sort_Array_20 PROPERTIES
+    PASS_REGULAR_EXPRESSION "1 2 3 4 5 6 7 9 12 23 25 32 34 37 43 44 53 54 87 123"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Wrong_Format
+    COMMAND ${APPLICATION} dgfhjk
+)
+set_tests_properties (${prefix}_Wrong_Format PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong number format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Wrong_Format_With_Numbers
+    COMMAND ${APPLICATION} 5 3 6 tut
+)
+set_tests_properties (${prefix}_Wrong_Format_With_Numbers PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong number format!"
+    LABELS "${MODULE}")

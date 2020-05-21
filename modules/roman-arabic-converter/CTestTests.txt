@@ -1,0 +1,77 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is a Roman-Arabic Convert calculator application"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Number_Of_Arguments
+    COMMAND ${APPLICATION} 1 2
+)
+set_tests_properties (${prefix}_can_Check_Number_Of_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: incorrect number of parameters. Please try again."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Operation_Format
+    COMMAND ${APPLICATION} 1 + 2
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Operation_Format PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong mode format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Convert_Arabic_To_Roman
+    COMMAND ${APPLICATION} 1 arabic_to_roman 25
+)
+set_tests_properties (${prefix}_can_Convert_Arabic_To_Roman PROPERTIES
+    PASS_REGULAR_EXPRESSION "Results of the conversion: 25 -> XXV"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Convert_Roman_To_Arabic
+    COMMAND ${APPLICATION} 1 roman_to_arabic XXXII
+)
+set_tests_properties (${prefix}_can_Convert_Roman_To_Arabic PROPERTIES
+    PASS_REGULAR_EXPRESSION "Results of the conversion: XXXII -> 32"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Convert_Two_Number_A_To_R
+    COMMAND ${APPLICATION} 2 arabic_to_roman 14 arabic_to_roman 7
+)
+set_tests_properties (${prefix}_can_Convert_Two_Number_A_To_R PROPERTIES
+    PASS_REGULAR_EXPRESSION "Results of the conversion: 14 -> XIV   7 -> VII"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Convert_Two_Number_R_To_A
+    COMMAND ${APPLICATION} 2 roman_to_arabic XIV roman_to_arabic VII
+)
+set_tests_properties (${prefix}_can_Convert_Two_Number_R_To_A PROPERTIES
+    PASS_REGULAR_EXPRESSION "Results of the conversion: XIV -> 14   VII -> 7"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Convert_Two_Number_Diff_Mode
+    COMMAND ${APPLICATION} 2 arabic_to_roman 4 roman_to_arabic XVI
+)
+set_tests_properties (${prefix}_can_Convert_Two_Number_Diff_Mode PROPERTIES
+    PASS_REGULAR_EXPRESSION "Results of the conversion: 4 -> IV   XVI -> 16"
+    LABELS "${MODULE}")

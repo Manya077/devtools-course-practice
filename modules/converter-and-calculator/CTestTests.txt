@@ -1,0 +1,77 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is a converter and calculator application"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Number_Of_Arguments
+    COMMAND ${APPLICATION} 1 2
+)
+set_tests_properties (${prefix}_can_Check_Number_Of_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Should be 5 arguments."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Number_Format
+    COMMAND ${APPLICATION} 1 ip 1 2 +
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Number_Format PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong number format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Operation_Format
+    COMMAND ${APPLICATION} 1 1 2 8 +trash
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Operation_Format PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong operation format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Add
+    COMMAND ${APPLICATION} 157 10 1011 2 +
+)
+set_tests_properties (${prefix}_can_Add PROPERTIES
+    PASS_REGULAR_EXPRESSION "a = 157 b = 1011 c = 168"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Diff
+    COMMAND ${APPLICATION} 157 10 234 8 -
+)
+set_tests_properties (${prefix}_can_Diff PROPERTIES
+    PASS_REGULAR_EXPRESSION "a = 157 b = 234 c = 1"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Mult
+    COMMAND ${APPLICATION} 65 10 2 10 *
+)
+set_tests_properties (${prefix}_can_Mult PROPERTIES
+    PASS_REGULAR_EXPRESSION "a = 65 b = 2 c = 130"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Divide
+    COMMAND ${APPLICATION} 54 10 27 10 /
+)
+set_tests_properties (${prefix}_can_Divide PROPERTIES
+    PASS_REGULAR_EXPRESSION "a = 54 b = 27 c = 2"
+    LABELS "${MODULE}")
