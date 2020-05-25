@@ -1,6 +1,5 @@
 // Copyright 2020 Tihomirova Mariya
 
-#include <iostream>
 #include "include/search_binary.h"
 
 int SearchBinary::Search(const int key, const int *arr, const int size) {
