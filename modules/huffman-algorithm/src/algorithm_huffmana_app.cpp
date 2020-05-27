@@ -1,10 +1,11 @@
 // Copyright 2020 Golovanova Elena
 
-#include <include/algorithm_huffmana.h>
-#include <include/algorithm_huffmana_app.h>
 #include <string>
 #include <sstream>
 #include <vector>
+
+#include <include/algorithm_huffmana.h>
+#include <include/algorithm_huffmana_app.h>
 
 AlgorithmHuffmanaApp::AlgorithmHuffmanaApp() : message_("") {}
 
@@ -17,12 +18,12 @@ void AlgorithmHuffmanaApp::help(const char* appname, const char* message) {
     "  $ " + appname + " <word1> <word2> ... <wordN>\n\n";
 }
 
-bool AlgorithmHuffmanaApp::validateNumberOfArguments(int argc, const char** argv) {
+bool AlgorithmHuffmanaApp::validateNumberOfArguments(int argc,
+  const char** argv) {
   if (argc == 1) {
     help(argv[0], "ERR0R: should be non-empty string");
     return false;
   }
-  
   return true;
 }
 
@@ -38,26 +39,12 @@ std::string AlgorithmHuffmanaApp:: operator()(int argc, const char** argv) {
     return message_;
   int number_arg = argc;
   std::vector<std::string> part_of_result;
-  std::string result = ""; //Нулевая?
+  std::string result = ""; 
   for (int i = 1; i < number_arg; i++) {
     HuffmanTree Tree(argv[i]);
     Tree.CreateEncodingTable();
-    part_of_result=Tree.Encode(argv[i]);
+    part_of_result = Tree.Encode(argv[i]);
     result = result + convert(part_of_result);
   }
   return result;
 }
-
-
-
-
-//AlgorithmHuffmanaApp::AlgorithmHuffmanaApp(): message_{}
-//
-//void AlgorithmHuffmanaApp::Help(const char* appname, const char* message) {
-//  message_=
-//    std::string(message)+
-//    "This is the Huffman algorithm\n\n" +
-//    "Please provide arguments in the following format:\n\n" +
-//    "  $ " + appname +
-//}
-
