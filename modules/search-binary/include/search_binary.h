@@ -3,7 +3,7 @@
 #ifndef MODULES_SEARCH_BINARY_INCLUDE_SEARCH_BINARY_H_
 #define MODULES_SEARCH_BINARY_INCLUDE_SEARCH_BINARY_H_
 
-#include "vector"
+#include <vector>
 
 class SearchBinary {
  public:
