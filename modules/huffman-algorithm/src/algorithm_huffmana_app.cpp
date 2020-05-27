@@ -28,7 +28,7 @@ bool AlgorithmHuffmanaApp::validateNumberOfArguments(int argc, const char** argv
 
 std::string AlgorithmHuffmanaApp:: convert(std::vector<std::string> _part_of_result) {
   std::string _result = "";
-  for (int j = 0; j < _part_of_result.size(); j++)
+  for (unsigned int j = 0; j < _part_of_result.size(); j++)
     _result = _result + _part_of_result[j];
   return _result;
 }
