@@ -1,7 +1,7 @@
 // Copyright 2020 Tihomirova Mariya
 
 #include <gtest/gtest.h>
-
+#include <vector>
 #include "include/search_binary.h"
 
 TEST(SearchBinaryTest, SearchInNullSizeArray) {
