@@ -1,8 +1,13 @@
 // Copyright 2020 Golovanova Elena
 
 #include <iostream>
+#include <string>
 
-int main() {
-  std::cout << "Hello,world";
+#include <include/algorithm_huffmana_app.h>
+
+int main(int argc, const char** argv) {
+  AlgorithmHuffmanaApp app;
+  std::string output = app(argc, argv);
+  std::cin >> output;
 return 0;
 }
