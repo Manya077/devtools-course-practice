@@ -54,14 +54,15 @@ TEST_F(AlgorithmHuffmanaAppTest, Check_works_with_original_arguments) {
 
   Assert("010101000101111000111010010100010");
 }
-
-TEST_F(AlgorithmHuffmanaAppTest, Check_works_without_arguments) {
-  vector<string> args = {};
-
-  Act(args);
-
-  Assert("ERR0R: should be non-empty string\n\nPlease enter words separated by spaces\\..*");
-}
+//
+// TEST_F(AlgorithmHuffmanaAppTest, Check_works_without_arguments) {
+//  vector<string> args = {};
+//
+//  Act(args);
+//
+//  Assert("ERR0R: should be non-empty string\n\nPlease enter words separated 
+//  by spaces\\..*");
+//}
 
 TEST_F(AlgorithmHuffmanaAppTest, Check_works_with_two_arguments) {
   vector<string> args = {"AAS", "RRR"};
