@@ -1,7 +1,5 @@
 // Copyright 2020 Golovanova Elena
 
-#include <include/algorithm_huffmana_app.h>
-
 #include <gtest/gtest.h>
 
 #include <string>
@@ -9,6 +7,8 @@
 #include <algorithm>
 #include <functional>
 #include <iterator>
+
+#include "include/algorithm_huffmana_app.h"
 
 using ::testing::internal::RE;
 using std::vector;
@@ -54,14 +54,13 @@ TEST_F(AlgorithmHuffmanaAppTest, Check_works_with_original_arguments) {
 
   Assert("010101000101111000111010010100010");
 }
-//
+
 // TEST_F(AlgorithmHuffmanaAppTest, Check_works_without_arguments) {
 //  vector<string> args = {};
 //
 //  Act(args);
 //
-//  Assert("ERR0R: should be non-empty string\n\nPlease enter words separated
-//  by spaces\\..*");
+//  Assert("ERR0R: should be non-empty string\\..*");
 //}
 
 TEST_F(AlgorithmHuffmanaAppTest, Check_works_with_two_arguments) {

@@ -1,8 +1,7 @@
 // Copyright 2020 Golovanova Elena
 
-
-#include <include/algorithm_huffmana.h>
-#include <include/algorithm_huffmana_app.h>
+#include "include/algorithm_huffmana.h"
+#include "include/algorithm_huffmana_app.h"
 
 #include <string>
 #include <sstream>
@@ -21,7 +20,7 @@ void AlgorithmHuffmanaApp::help(const char* appname, const char* message) {
 bool AlgorithmHuffmanaApp::validateNumberOfArguments(int argc,
   const char** argv) {
   if (argc == 1) {
-    help(argv[0], "ERR0R: should be non-empty string\n\n");
+    help(argv[0], "ERR0R: should be non-empty string");
     return false;
   }
   return true;
