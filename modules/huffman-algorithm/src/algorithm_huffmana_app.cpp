@@ -21,7 +21,7 @@ void AlgorithmHuffmanaApp::help(const char* appname, const char* message) {
 bool AlgorithmHuffmanaApp::validateNumberOfArguments(int argc,
   const char** argv) {
   if (argc == 1) {
-    help(argv[0], "ERR0R: should be non-empty string\n\n");
+    help(argv[0]);
     return false;
   }
   return true;
