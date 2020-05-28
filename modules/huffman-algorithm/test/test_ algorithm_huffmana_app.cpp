@@ -60,7 +60,7 @@ TEST_F(AlgorithmHuffmanaAppTest, Check_works_with_original_arguments) {
 //
 //  Act(args);
 //
-//  Assert("ERR0R: should be non-empty string\n\nPlease enter words separated 
+//  Assert("ERR0R: should be non-empty string\n\nPlease enter words separated
 //  by spaces\\..*");
 //}
 
