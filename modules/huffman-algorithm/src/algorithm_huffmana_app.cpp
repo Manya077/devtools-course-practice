@@ -12,7 +12,7 @@ AlgorithmHuffmanaApp::AlgorithmHuffmanaApp() : message_("") {}
 
 void AlgorithmHuffmanaApp::help(const char* appname, const char* message) {
   message_ =
-    std::string(message) +
+    std::string(message)  +
     "This app encodes words using the Huffman algorithm\n\n" +
     "Please enter words separated by spaces\n\n" +
     "  $ " + appname + " <word1> <word2> ... <wordN>\n\n";
@@ -21,7 +21,7 @@ void AlgorithmHuffmanaApp::help(const char* appname, const char* message) {
 bool AlgorithmHuffmanaApp::validateNumberOfArguments(int argc,
   const char** argv) {
   if (argc == 1) {
-    help(argv[0]);
+    help(argv[0], "ERR0R: should be non-empty string\n\n");
     return false;
   }
   return true;
@@ -48,6 +48,6 @@ std::string AlgorithmHuffmanaApp:: operator()(int argc, const char** argv) {
     HuffmanTree Tree(do_one_string);
     Tree.CreateEncodingTable();
     interim_result = Tree.Encode(do_one_string);
-    result = result + convert(interim_result);
+    result = convert(interim_result);
   return result;
 }
