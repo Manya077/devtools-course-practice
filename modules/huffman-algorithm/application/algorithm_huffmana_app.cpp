@@ -8,6 +8,6 @@
 int main(int argc, const char** argv) {
   AlgorithmHuffmanaApp app;
   std::string output = app(argc, argv);
-  printf("%s\n", output.c_str());
+  std::cout << output;
 return 0;
 }
