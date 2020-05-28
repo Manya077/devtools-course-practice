@@ -22,7 +22,7 @@ void AlgorithmHuffmanaApp::help(const char* appname, const char* message) {
 bool AlgorithmHuffmanaApp::validateNumberOfArguments(int argc,
   const char** argv) {
   if (argc == 1) {
-    help(argv[0], "ERR0R: should be non-empty string");
+    help(argv[0], "ERR0R: should be non-empty string\n\n");
     return false;
   }
   return true;
@@ -40,13 +40,15 @@ std::string AlgorithmHuffmanaApp:: operator()(int argc, const char** argv) {
   if (!validateNumberOfArguments(argc, argv))
     return message_;
   int number_arg = argc;
-  std::vector<std::string> part_of_result;
+  std::vector<std::string> interim_result;
+  std::string do_one_string = "";
   std::string result = "";
   for (int i = 1; i < number_arg; i++) {
-    HuffmanTree Tree(argv[i]);
-    Tree.CreateEncodingTable();
-    part_of_result = Tree.Encode(argv[i]);
-    result = result + convert(part_of_result);
+    do_one_string = do_one_string + argv[i];
   }
+    HuffmanTree Tree(do_one_string);
+    Tree.CreateEncodingTable();
+    interim_result = Tree.Encode(do_one_string);
+    result = result + convert(interim_result);
   return result;
 }
