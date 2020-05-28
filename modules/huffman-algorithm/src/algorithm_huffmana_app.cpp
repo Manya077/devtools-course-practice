@@ -12,10 +12,9 @@ AlgorithmHuffmanaApp::AlgorithmHuffmanaApp() : message_("") {}
 
 void AlgorithmHuffmanaApp::help(const char* appname, const char* message) {
   message_ =
-    std::string(message) +"\n\n" +
+    std::string(message) +
     "This app encodes words using the Huffman algorithm\n\n" +
     "Please enter words separated by spaces\n\n" +
-
     "  $ " + appname + " <word1> <word2> ... <wordN>\n\n";
 }
 
