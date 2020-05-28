@@ -30,7 +30,7 @@ set_tests_properties (${prefix}_Check_works_with_original_arguments PROPERTIES
 
 add_test(
     NAME ${prefix}_Check_works_with_two_arguments
-    COMMAND ${APPLICATION} AAS RRR
+    COMMAND ${APPLICATION} "AAS" "RRR"
 )
 set_tests_properties (${prefix}_Check_works_with_two_arguments PROPERTIES
     PASS_REGULAR_EXPRESSION "0101001111"
