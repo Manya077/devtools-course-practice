@@ -4,7 +4,6 @@
 #include <vector>
 #include <iostream>
 #include <sstream>
-#include <algorithm>
 #include "include/graph_diameter_search_app.h"
 
 int GraphApp::parseValue(const std::string& data) {
