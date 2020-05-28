@@ -1,11 +1,12 @@
 // Copyright 2020 Golovanova Elena
 
-#include <string>
-#include <sstream>
-#include <vector>
 
 #include <include/algorithm_huffmana.h>
 #include <include/algorithm_huffmana_app.h>
+
+#include <string>
+#include <sstream>
+#include <vector>
 
 AlgorithmHuffmanaApp::AlgorithmHuffmanaApp() : message_("") {}
 
@@ -27,7 +28,8 @@ bool AlgorithmHuffmanaApp::validateNumberOfArguments(int argc,
   return true;
 }
 
-std::string AlgorithmHuffmanaApp:: convert(std::vector<std::string> _part_of_result) {
+std::string AlgorithmHuffmanaApp:: convert(std::vector<std::string>
+  _part_of_result) {
   std::string _result = "";
   for (unsigned int j = 0; j < _part_of_result.size(); j++)
     _result = _result + _part_of_result[j];
@@ -39,7 +41,7 @@ std::string AlgorithmHuffmanaApp:: operator()(int argc, const char** argv) {
     return message_;
   int number_arg = argc;
   std::vector<std::string> part_of_result;
-  std::string result = ""; 
+  std::string result = "";
   for (int i = 1; i < number_arg; i++) {
     HuffmanTree Tree(argv[i]);
     Tree.CreateEncodingTable();

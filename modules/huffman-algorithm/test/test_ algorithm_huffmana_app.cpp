@@ -16,7 +16,6 @@ using std::string;
 
 class AlgorithmHuffmanaAppTest : public ::testing::Test {
 protected:
-  // virtual void SetUp() {}
 
   void Act(vector<string> args_) {
     vector<const char*> options;
@@ -41,10 +40,18 @@ private:
   string output_;
 };
 
-TEST_F(AlgorithmHuffmanaAppTest, Do_Print_Help_Without_Arguments) {
-  vector<string> args = {};
+TEST_F(AlgorithmHuffmanaAppTest, Check_works_with_one_arguments) {
+  vector<string> args = {"AAASRERTWTASR"};
 
   Act(args);
 
-  Assert("ERR0R: should be non-empty string\\..*");
+  Assert("010101000101111000111010010100010");
+}
+
+TEST_F(AlgorithmHuffmanaAppTest, Check_works_with_original_arguments) {
+  vector<string> args = { "AAAS*E*TWTAS*" };
+
+  Act(args);
+
+  Assert("010101000101111000111010010100010");
 }
