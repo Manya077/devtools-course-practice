@@ -1,0 +1,60 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is a Bitfield application."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Number_Of_Arguments
+    COMMAND ${APPLICATION} 1 2
+)
+set_tests_properties (${prefix}_can_Check_Number_Of_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Should be three arguments"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Type_Arguments
+    COMMAND ${APPLICATION} 1 c c
+)
+set_tests_properties (${prefix}_can_Check_Type_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Wrong number format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_One_Bitfield
+    COMMAND ${APPLICATION} 1 10 3
+)
+set_tests_properties (${prefix}_Can_One_Bitfield PROPERTIES
+    PASS_REGULAR_EXPRESSION "0 0 0 1 0 0 0 0 0 0"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Two_Bitfield
+    COMMAND ${APPLICATION} 2 10 4
+)
+add_test(
+    NAME ${prefix}_Can_Two_Bitfield_Again
+    COMMAND ${APPLICATION} 2 15 7
+)
+add_test(
+    NAME ${prefix}_Can_Three_Bitfield
+    COMMAND ${APPLICATION} 3 10 6
+)
+set_tests_properties (${prefix}_Can_Three_Bitfield PROPERTIES
+    PASS_REGULAR_EXPRESSION "1 1 1 1 1 1 0 1 1 1"
+    LABELS "${MODULE}")
