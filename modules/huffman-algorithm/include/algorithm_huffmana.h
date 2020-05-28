@@ -1,4 +1,4 @@
-// Copyright 2020 Poletueva Anastasia
+// Copyright 2020 Poletueva Anastasia & Golovanova Elena
 
 #ifndef MODULES_HUFFMAN_ALGORITHM_INCLUDE_ALGORITHM_HUFFMANA_H_
 #define MODULES_HUFFMAN_ALGORITHM_INCLUDE_ALGORITHM_HUFFMANA_H_
