@@ -2,7 +2,6 @@
 
 #include <gtest/gtest.h>
 #include <vector>
-#include <string>
 #include "include/graph_diameter_search_app.h"
 
 using ::testing::internal::RE;
