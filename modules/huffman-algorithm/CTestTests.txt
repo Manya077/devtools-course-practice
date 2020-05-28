@@ -29,6 +29,14 @@ set_tests_properties (${prefix}_Check_works_with_original_arguments PROPERTIES
     LABELS "${MODULE}") 
 
 add_test(
+    NAME ${prefix}_Check_works_without_arguments
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_Check_works_without_arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: empty argument"
+    LABELS "${MODULE}") 
+
+add_test(
     NAME ${prefix}_Check_works_with_two_arguments
     COMMAND ${APPLICATION} "AAS" "RRR"
 )
