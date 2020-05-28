@@ -1,6 +1,7 @@
 // Copyright 2020 Tihomirova Mariya
 
 #include "include/search_binary.h"
+#include <vector>
 
 int SearchBinary::Search(const int key, const int* arr, const int size) {
     if (size < 1) return -1;
