@@ -1,4 +1,4 @@
-// Copyright 2020 Mityagina Daria
+// Copyright 2020 Mityagina Daria & Golubeva Anna
 
 #include "include/graph_diameter_search.h"
 #include <limits.h>
