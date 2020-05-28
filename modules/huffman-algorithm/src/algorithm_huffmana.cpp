@@ -1,4 +1,4 @@
-// Copyright 2020 Poletueva Anastasia
+// Copyright 2020 Poletueva Anastasia & Golovanova Elena
 
 #include "include/algorithm_huffmana.h"
 #include <string>
