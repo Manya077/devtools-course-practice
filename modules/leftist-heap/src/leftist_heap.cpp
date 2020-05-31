@@ -1,4 +1,4 @@
-// Copyright 2020 Vlasov Andrey
+// Copyright 2020 Vlasov Andrey & Tihomirova Mariya
 
 #include "include/leftist_heap.h"
 #include <stdexcept>

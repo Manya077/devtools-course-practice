@@ -1,7 +1,5 @@
 // Copyright 2020 Tihomirova Mariya
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <string>
 #include <iostream>
 
