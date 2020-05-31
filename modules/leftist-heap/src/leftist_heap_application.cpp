@@ -87,9 +87,8 @@ std::string IsEmptyOperation::operator()(LeftistHeap* heap,
   std::stringstream stream;
   if (!empty) {
     stream << "Heap is not empty";
-  }
-  else {
-    stream << "Heap is empty";
+  } else {
+      stream << "Heap is empty";
   }
   return stream.str();
 }

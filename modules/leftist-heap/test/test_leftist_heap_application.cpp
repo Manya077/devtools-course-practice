@@ -15,7 +15,7 @@ using std::vector;
 using std::string;
 
 class LeftHeapAppTest : public ::testing::Test {
-protected:
+ protected:
   void Act(vector<string> args_) {
     vector<const char*> options;
 
@@ -34,7 +34,7 @@ protected:
     EXPECT_TRUE(RE::PartialMatch(output_, RE(expected)));
   }
 
-private:
+ private:
   LeftHeapApp app_;
   string output_;
 };
@@ -80,7 +80,8 @@ TEST_F(LeftHeapAppTest, Can_IsEmpty_In_Not_Empty_Heap) {
 }
 
 TEST_F(LeftHeapAppTest, Can_Insert_And_Find_Min) {
-  vector<string> args = { "insert", "10", "insert", "7", "insert", "15", "findMin"};
+  vector<string> args = { "insert", "10", "insert", "7",
+    "insert", "15", "findMin"};
 
   Act(args);
 
