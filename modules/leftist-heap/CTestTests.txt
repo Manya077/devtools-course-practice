@@ -1,0 +1,93 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_Can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is a Leftist Heap application"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Detect_Wrong_Args
+    COMMAND ${APPLICATION} 1357
+)
+
+set_tests_properties (${prefix}_Can_Detect_Wrong_Args PROPERTIES
+    PASS_REGULAR_EXPRESSION "Bad arguments!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Insert_Invalid
+    COMMAND ${APPLICATION} insert 123abc
+)
+
+set_tests_properties (${prefix}_Can_Insert_Invalid PROPERTIES
+    PASS_REGULAR_EXPRESSION "Invalid value: 123abc"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_IsEmpty_In_Empty_Heap
+    COMMAND ${APPLICATION} isEmpty
+)
+
+set_tests_properties (${prefix}_Can_IsEmpty_In_Empty_Heap PROPERTIES
+    PASS_REGULAR_EXPRESSION "Heap is empty"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_IsEmpty_In_Not_Empty_Heap
+    COMMAND ${APPLICATION} insert 77 isEmpty
+)
+
+set_tests_properties (${prefix}_Can_IsEmpty_In_Not_Empty_Heap PROPERTIES
+    PASS_REGULAR_EXPRESSION "Heap is not empty"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Insert_And_Find_Min
+    COMMAND ${APPLICATION} insert 10 insert 7 insert 15 findMin
+)
+
+set_tests_properties (${prefix}_Can_Insert_And_Find_Min PROPERTIES
+    PASS_REGULAR_EXPRESSION "Min is 7"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Find_Min_In_Empty_Heap
+    COMMAND ${APPLICATION} findMin
+)
+
+set_tests_properties (${prefix}_Can_Find_Min_In_Empty_Heap PROPERTIES
+    PASS_REGULAR_EXPRESSION "Heap is empty"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Delete_In_Empty_Heap
+    COMMAND ${APPLICATION} deleteMin
+)
+
+set_tests_properties (${prefix}_Can_Delete_In_Empty_Heap PROPERTIES
+    PASS_REGULAR_EXPRESSION "Heap is empty"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Insert_And_Delete
+    COMMAND ${APPLICATION} insert 10 insert 5 deleteMin
+)
+
+set_tests_properties (${prefix}_Can_Insert_And_Delete PROPERTIES
+    PASS_REGULAR_EXPRESSION "5 is delete"
+    LABELS "${MODULE}")

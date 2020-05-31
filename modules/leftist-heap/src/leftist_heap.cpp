@@ -1,7 +1,7 @@
 // Copyright 2020 Vlasov Andrey
 
 #include "include/leftist_heap.h"
-
+#include <stdexcept>
 #include <string>
 
 Node::Node(const int _key)
@@ -102,7 +102,7 @@ int LeftistHeap::findMin() const {
   if (root) {
     return root->key;
   } else {
-    throw std::string("Heap is empty.");
+    throw std::invalid_argument("Heap is empty.");
   }
 }
 
@@ -115,6 +115,6 @@ int LeftistHeap::deleteMin() {
     root = Node::merge(_left, _right);
     return keyValue;
   } else {
-    throw std::string("Heap is empty.");
+    throw std::invalid_argument("Heap is empty.");
   }
 }

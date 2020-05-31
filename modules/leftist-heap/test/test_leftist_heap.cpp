@@ -115,7 +115,7 @@ TEST(LeftistHeapTest, Can_Throw_Exception_When_Find_Min_In_Empty_Heap) {
   LeftistHeap Heap;
 
   // Act & Assert
-  EXPECT_THROW(Heap.findMin(), std::string);
+  EXPECT_ANY_THROW(Heap.findMin());
 }
 
 TEST(LeftistHeapTest, Can_Throw_Exception_When_Delete_Min_In_Empty_Heap) {
@@ -123,7 +123,7 @@ TEST(LeftistHeapTest, Can_Throw_Exception_When_Delete_Min_In_Empty_Heap) {
   LeftistHeap Heap;
 
   // Act & Assert
-  EXPECT_THROW(Heap.deleteMin(), std::string);
+  EXPECT_ANY_THROW(Heap.deleteMin());
 }
 
 TEST(LeftistHeapTest, Heap_Is_Empty_After_Inserting_And_Deleting_Min) {
