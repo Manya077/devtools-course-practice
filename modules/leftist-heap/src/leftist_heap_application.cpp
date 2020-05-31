@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 #include <sstream>
-#include <iostream>
 #include "include/leftist_heap_application.h"
 #include "include/leftist_heap.h"
 
@@ -73,8 +72,9 @@ LHOperation* LHOperation::makeOperation(std::string op) {
       res = new FindMinOperation;
   } else if (op == "deleteMin") {
       res = new DeleteMinOperation;
-  } else
+  } else {
       throw std::invalid_argument("Bad arguments!");
+  }
   return res;
 }
 
