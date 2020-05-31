@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <iostream>
 #include "include/leftist_heap_application.h"
 #include "include/leftist_heap.h"
 
@@ -66,18 +67,14 @@ LHOperation* LHOperation::makeOperation(std::string op) {
   LHOperation* res = nullptr;
   if (op == "isEmpty") {
     res = new IsEmptyOperation;
-  }
-  if (op == "insert") {
-    res = new InsertOperation;
-  }
-  if (op == "findMin") {
-    res = new FindMinOperation;
-  }
-  if (op == "deleteMin") {
-    res = new DeleteMinOperation;
-  }
-  if (res == nullptr)
-    throw std::invalid_argument("Bad arguments!");
+  } else if (op == "insert") {
+      res = new InsertOperation;
+  } else if (op == "findMin") {
+      res = new FindMinOperation;
+  } else if (op == "deleteMin") {
+      res = new DeleteMinOperation;
+  } else
+      throw std::invalid_argument("Bad arguments!");
   return res;
 }
 
@@ -102,25 +99,15 @@ std::string InsertOperation::operator()(LeftistHeap* heap,
 std::string FindMinOperation::operator()(LeftistHeap* heap,
   const std::vector<int>& arg) {
   std::stringstream stream;
-  try {
-    int found = heap->findMin();
-    stream << "Min is " << found;
-  }
-  catch (std::exception& ex) {
-    stream << ex.what();
-  }
+  int found = heap->findMin();
+  stream << "Min is " << found;
   return stream.str();
 }
 
 std::string DeleteMinOperation::operator()(LeftistHeap* heap,
   const std::vector<int>& arg) {
   std::stringstream stream;
-  try {
-    int del = heap->deleteMin();
-    stream << del << " is delete";
-  }
-  catch (std::exception & ex) {
-    stream << ex.what();
-  }
+  int del = heap->deleteMin();
+  stream << del << " is delete";
   return stream.str();
 }
